@@ -10,16 +10,25 @@ public class WaveSpawner : MonoBehaviour {
 
 	public Transform spawnPoint;
 
-	public float timeBetweenWaves = 5f;
-	private float countdown = 2f;
+    public GameObject shopUI;
+    private TurretBlueprint turretToBuild;
+
+    public float timeBetweenWaves = 5f;
+	private float countdown = 10f;
 
 	public Text waveCountdownText;
 
 	public GameManager gameManager;
+    BuildManager buildManager;
 
 	private int waveIndex = 0;
 
-	void Update ()
+    void Start()
+    {
+        buildManager = BuildManager.instance;
+    }
+
+    void Update ()
 	{
 		if (EnemiesAlive > 0)
 		{
@@ -35,8 +44,11 @@ public class WaveSpawner : MonoBehaviour {
 		if (countdown <= 0f)
 		{
 			StartCoroutine(SpawnWave());
-			countdown = timeBetweenWaves;
-			return;
+            //countdown = timeBetweenWaves;
+            shopUI.SetActive(false);
+            turretToBuild = null;
+
+            return;
 		}
 
 		countdown -= Time.deltaTime;
