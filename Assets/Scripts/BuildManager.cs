@@ -22,11 +22,7 @@ public class BuildManager : MonoBehaviour {
 
 	public NodeUI nodeUI;
 
-	public bool CanBuild {
-        get {
-            return turretToBuild != null;
-        }
-    }
+	public bool CanBuild { get { return turretToBuild != null; } }
 	public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }
 
 	public void SelectNode (Node node)
@@ -36,6 +32,11 @@ public class BuildManager : MonoBehaviour {
 			DeselectNode();
 			return;
 		}
+
+        if(node.tag == "nonbuilder")
+        {
+            return;
+        }
 
 		selectedNode = node;
 		turretToBuild = null;
