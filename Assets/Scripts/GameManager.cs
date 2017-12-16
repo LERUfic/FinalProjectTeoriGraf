@@ -26,14 +26,20 @@ public class GameManager : MonoBehaviour {
 
 	void EndGame ()
 	{
-		GameIsOver = true;
-		gameOverUI.SetActive(true);
+		if(!GameIsOver)
+        {
+            GameIsOver = true;
+            gameOverUI.SetActive(true);
+        }
 	}
 
 	public void WinLevel ()
 	{
-		GameIsOver = true;
-		completeLevelUI.SetActive(true);
+		if(!GameIsOver)
+        {
+            GameIsOver = true;
+            completeLevelUI.SetActive(true);
+        }
 	}
 
 }
